@@ -12,11 +12,11 @@ pipeline {
       }
     }
 
-    stage('Build Go App into Docker Image') {
-      steps {
-        sh 'docker build -t ${IMAGE_NAME}:latest .'
-      }
-    }
+    // stage('Build Go App into Docker Image') {
+    //   steps {
+    //     sh 'docker build -t ${IMAGE_NAME}:1.0 .'
+    //   }
+    // }
 
     stage('Run App with Docker Compose') {
       steps {
@@ -26,7 +26,7 @@ pipeline {
 
     stage('Test App') {
       steps {
-        sh 'curl --retry 5 --retry-connrefused http://localhost:8080'
+        sh 'curl --retry 5 --retry-connrefused http://localhost:5000/hello'
       }
     }
   }
