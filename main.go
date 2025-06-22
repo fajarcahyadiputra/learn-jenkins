@@ -26,9 +26,9 @@ func main() {
 			"message": "Hello " + name + ", you are " + age + " years old",
 		})
 	})
-	fmt.Println("Server is running on port 8000")
-	// Run the server on port 8000
-	err := r.Run(":8000")
+	fmt.Println("Server is running on port 5000")
+	// Run the server on port 5000
+	err := r.Run(":5000")
 	if err != nil {
 		fmt.Println("Error starting server:", err)
 		return
