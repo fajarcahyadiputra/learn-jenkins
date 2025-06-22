@@ -1,4 +1,5 @@
 pipeline {
+  agent any
   environment {
     IMAGE_NAME = 'goapp'
     CONTAINER_NAME = 'goapp-container'
