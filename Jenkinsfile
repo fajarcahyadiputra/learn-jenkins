@@ -20,7 +20,7 @@ pipeline {
 
     stage('Run App with Docker Compose') {
       steps {
-        sh 'docker-compose up -d'
+        sh 'docker compose up -d'
       }
     }
 
@@ -34,7 +34,7 @@ pipeline {
   post {
     always {
       echo 'Cleaning up...'
-      sh 'docker-compose down || true'
+      sh 'docker compose down || true'
     }
     success {
       echo '✅ App built and deployed successfully.'
