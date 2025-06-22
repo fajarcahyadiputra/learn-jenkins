@@ -34,7 +34,7 @@ pipeline {
   post {
     always {
       echo 'Cleaning up...'
-      sh 'docker compose down || true'
+    //   sh 'docker compose down || true'
     }
     success {
       echo '✅ App built and deployed successfully.'
