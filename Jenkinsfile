@@ -1,32 +1,35 @@
 pipeline {
     agent any
-    tools{
+
+    tools {
         go 'go1.23'
     }
 
-    environment{
-        GO111MODULE 'on'
-        // GOPATH '/go'
-        // GOCACHE '/go/cache'
-        // GOMODCACHE '/go/pkg/mod'
-        // GOROOT '/usr/local/go'
-        // PATH "${env.GOPATH}/bin:${env.GOROOT}/bin:${env.PATH}"
+    environment {
+        GO111MODULE = 'on'
+        // GOPATH, GOROOT, etc bisa diatur otomatis jika pakai `tools { go '...' }`
     }
 
     stages {
         stage('Build') {
             steps {
                 echo 'Building...'
+                sh 'go version'
+                sh 'go build ./...'
             }
         }
+
         stage('Test') {
             steps {
                 echo 'Testing...'
+                sh 'go test ./...'
             }
         }
+
         stage('Deploy') {
             steps {
                 echo 'Deploying...'
+                // Tambahkan skrip deploy di sini
             }
         }
     }
@@ -54,5 +57,4 @@ pipeline {
             echo 'This will run for cleanup tasks after the pipeline execution.'
         }
     }
-
 }
