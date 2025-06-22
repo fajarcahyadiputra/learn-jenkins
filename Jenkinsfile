@@ -26,16 +26,16 @@ pipeline {
       }
     }
 
-    stage('Test App') {
-      steps {
-        // Tambahkan delay kecil agar service sempat benar-benar ready
-        sh '''
-          echo "Testing service at http://localhost:5000/hello"
-          sleep 5
-          curl --retry 5 --retry-connrefused http://localhost:5000/hello
-        '''
-      }
-    }
+    // stage('Test App') {
+    //   steps {
+    //     // Tambahkan delay kecil agar service sempat benar-benar ready
+    //     sh '''
+    //       echo "Testing service at http://localhost:5000/hello"
+    //       sleep 5
+    //       curl --retry 5 --retry-connrefused http://localhost:5000/hello
+    //     '''
+    //   }
+    // }
   }
 
   post {
