@@ -1,5 +1,17 @@
 pipeline {
     agent any
+    tools{
+        go 'go1.23'
+    }
+
+    environment{
+        GO111MODULE 'on'
+        // GOPATH '/go'
+        // GOCACHE '/go/cache'
+        // GOMODCACHE '/go/pkg/mod'
+        // GOROOT '/usr/local/go'
+        // PATH "${env.GOPATH}/bin:${env.GOROOT}/bin:${env.PATH}"
+    }
 
     stages {
         stage('Build') {
