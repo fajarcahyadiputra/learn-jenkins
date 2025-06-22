@@ -1,5 +1,6 @@
 pipeline {
   agent any
+
   environment {
     IMAGE_NAME = 'goapp'
     CONTAINER_NAME = 'goapp-container'
@@ -12,28 +13,34 @@ pipeline {
       }
     }
 
-    // stage('Build Go App into Docker Image') {
+    // stage('Build Docker Image') {
     //   steps {
-    //     sh 'docker build -t ${IMAGE_NAME}:1.0 .'
+    //     sh 'docker build -t ${IMAGE_NAME}:latest .'
     //   }
     // }
 
     stage('Run App with Docker Compose') {
       steps {
-        sh 'docker compose up -d'
+        // Compose build to make sure it uses latest Dockerfile changes
+        sh 'docker compose up --build -d'
       }
     }
 
     stage('Test App') {
       steps {
-        sh 'curl --retry 5 --retry-connrefused http://localhost:5000/hello'
+        // Tambahkan delay kecil agar service sempat benar-benar ready
+        sh '''
+          echo "Testing service at http://localhost:5000/hello"
+          sleep 5
+          curl --retry 5 --retry-connrefused http://localhost:5000/hello
+        '''
       }
     }
   }
 
   post {
     always {
-      echo 'Cleaning up...'
+      echo '🧹 Cleaning up containers...'
     //   sh 'docker compose down || true'
     }
     success {
