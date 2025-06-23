@@ -10,7 +10,7 @@ func main() {
 	r := gin.Default()
 	r.GET("/hello", func(c *gin.Context) {
 		c.JSON(200, gin.H{
-			"message": "Hello, World, this is a simple Go server with Gin!",
+			"message": "Hello, World, this is a simple Go server with Gin! Welcome to belajar-go-jenkins.",
 		})
 	})
 	r.GET("/hello/:name", func(c *gin.Context) {
