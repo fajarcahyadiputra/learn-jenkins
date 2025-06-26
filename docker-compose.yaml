@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: goapp:1.0
+    image: goapp:${IMAGE_TAG}
     container_name: goapp-container
     ports:
       - "5000:5000"
